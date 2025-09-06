@@ -1,0 +1,23 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length-1;
+
+       return BinarySrch(start,end,nums,target);
+       }
+
+       public static int BinarySrch(int start,int end,int[] nums,int target){
+            if(start>end) return -1;
+
+            int mid= start+(end - start)/2;
+
+            //For  mid is equal to target
+            if(nums [mid]==target) return mid;
+
+            //For target is Greater than mid
+            else if(target>nums[mid]) return BinarySrch(mid+1,end,nums, target);
+
+            //For target is Smaller than mid
+            return BinarySrch(start,mid-1,nums,target);
+       }
+}
