@@ -1,3 +1,3 @@
 # LeetCodePracticeProblems
-Leet Code Problems
+Solving Leet Code Problems
 DSA using JAVA
