@@ -1,0 +1,23 @@
+// leetcode no. 69
+//code is in JAVA Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
+//You must not use any built-in exponent function or operator.
+
+class Solution {
+    public int mySqrt(int x) {
+        
+        int low=0;
+        int ans=0;
+        int high=x;
+
+        while(low <=high){
+            int mid=(low+high)/2;
+            if((long)mid*(long)mid>x){
+                high=mid-1;
+            }else{
+                ans=mid;
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+}
