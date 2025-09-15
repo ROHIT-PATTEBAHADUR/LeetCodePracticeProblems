@@ -1,0 +1,59 @@
+// Leetcode 51 N-Queens
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res = new ArrayList<>();
+        char [][]cb = new char [n][n];
+        
+        // initialize board with '.'
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                cb[i][j] = '.';
+            }
+        }
+        
+        solve(0, res, cb, n);
+        return res;
+    }
+    
+    void solve(int r, List<List<String>> res, char [][]cb, int n) {
+        if(r == n) {
+            List<String> a = new ArrayList<>();
+            for(int i = 0; i < n; i++) {
+                a.add(new String(cb[i]));
+            }
+            res.add(a);
+            return;
+        }
+        
+        for(int c = 0; c < n; c++) {
+            if(isValid(r, c, cb, n)) {
+                cb[r][c] = 'Q';
+                solve(r+1, res, cb, n);
+                cb[r][c] = '.';
+            }
+        }
+    }
+    
+    boolean isValid(int r, int c, char[][] cb, int n) {
+        // check column
+        for(int i = r-1; i >= 0; i--) {
+            if(cb[i][c] == 'Q') return false;
+        }
+        
+        // check upper-right diagonal
+        int i = r-1, j = c+1;
+        while(i >= 0 && j < n) {
+            if(cb[i][j] == 'Q') return false;
+            i--; j++;
+        }
+        
+        // check upper-left diagonal
+        i = r-1; j = c-1;
+        while(i >= 0 && j >= 0) {
+            if(cb[i][j] == 'Q') return false;
+            i--; j--;
+        }
+        
+        return true;
+    }
+}
