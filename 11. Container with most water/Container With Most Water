@@ -1,1 +1,28 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        int left = 0;
+        int right = height.length - 1;
 
+        while (left < right) {
+            // Calculate width
+            int width = right - left;
+            
+            // Height is limited by the shorter bar
+            int h = Math.min(height[left], height[right]);
+            
+            // Update maxArea if current is larger
+            int currentArea = width * h;
+            maxArea = Math.max(maxArea, currentArea);
+
+            // Move the pointer pointing to the shorter bar
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+}
